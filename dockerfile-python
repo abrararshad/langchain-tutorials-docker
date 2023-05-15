@@ -1,0 +1,15 @@
+FROM python:3.9
+
+# update the system, install git and bash
+RUN apt-get update && apt-get install -y git bash
+
+# Install jupyter notebook
+RUN pip install --upgrade pip 
+RUN pip install jupyter
+
+WORKDIR /app
+
+COPY ./apps /app
+RUN pip install -r /app/langchain-tutorials/requirements.txt
+
+CMD ["jupyter", "notebook", "--allow-root", "--port", "8111", "--paths", "/app", "--ip", "0.0.0.0", "--no-browser", "--debug"]

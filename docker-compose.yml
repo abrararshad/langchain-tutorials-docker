@@ -1,0 +1,18 @@
+# This is docker-composee.yml file
+version: '3'
+
+# Create a python3.6 service, call the container langchain, mount the apps directory to the container's /app directory
+# Start the http server on port 8888 with command http.server
+services:
+  langchain:
+    build:
+      context: .
+      dockerfile: dockerfile-python
+    ports:
+      - "8111:8111"
+    volumes:
+      - ./apps:/app
+
+
+
+    
